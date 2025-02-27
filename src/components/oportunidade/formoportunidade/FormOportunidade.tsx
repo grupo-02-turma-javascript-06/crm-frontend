@@ -19,7 +19,7 @@ function FormOportunidade() {
         status: StatusOportunidade.ABERTA,
         cliente: undefined,
     });
-
+    
     const statusOptions = Object.values(StatusOportunidade);
 
     const [clientes, setClientes] = useState<Cliente[]>([]);
@@ -30,16 +30,15 @@ function FormOportunidade() {
 
     useEffect(() => {
         buscarClientes();
-
         if (id !== undefined) {
             buscarClientePorId(id);
         }
     }, [id]);
 
     useEffect(() => {
-        setOportunidade({
-            ...oportunidade,
-            cliente: cliente,
+        setOportunidade({ 
+            ...oportunidade, 
+            cliente: cliente 
         });
     }, [cliente]);
 
@@ -73,15 +72,15 @@ function FormOportunidade() {
 
         const dadosOportunidade = {
             ...oportunidade,
-            abertura:
+            abertura: 
                 oportunidade.abertura || new Date().toISOString().split("T")[0],
         };
 
         if (id !== undefined) {
             try {
                 await atualizar(
-                    "/oportunidades",
-                    dadosOportunidade,
+                    "/oportunidades", 
+                    dadosOportunidade, 
                     setOportunidade
                 );
                 ToastAlerta("Oportunidade atualizada com sucesso", "sucesso");
@@ -91,8 +90,8 @@ function FormOportunidade() {
         } else {
             try {
                 await cadastrar(
-                    "/oportunidade",
-                    dadosOportunidade,
+                    "/oportunidade", 
+                    dadosOportunidade, 
                     setOportunidade
                 );
                 ToastAlerta("Oportunidade cadastrada com sucesso", "sucesso");
@@ -100,7 +99,6 @@ function FormOportunidade() {
                 ToastAlerta("Erro ao cadastrar a Oportunidade", "erro");
             }
         }
-
         retornar();
     }
 
@@ -113,122 +111,120 @@ function FormOportunidade() {
 
     return (
         <Modal isOpen={isOpen} onClose={retornar}>
-            <h2>
-                <span>
-                    {id !== undefined ? "Atualizar" : "Cadastrar"} Oportunidade
-                </span>
-            </h2>
-            <form className="" onSubmit={gerarNovaOportunidade}>
-                <div>
-                    <label>Nome</label>
-                    <input
-                        type="text"
-                        className=""
-                        placeholder="Nome"
-                        name="nome"
-                        value={oportunidade.nome}
-                        onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                            atualizarEstado(e)
-                        }
-                        required
-                    />
-                </div>
-                <div>
-                    <label>Valor</label>
-                    <input
-                        type="text"
-                        className=""
-                        placeholder="Valor"
-                        name="valor"
-                        value={oportunidade.valor}
-                        onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                            atualizarEstado(e)
-                        }
-                        required
-                    />
-                </div>
-                <div>
-                    <label>Abertura</label>
-                    <input
-                        type="date"
-                        className=""
-                        name="abertura"
-                        value={oportunidade.abertura}
-                        readOnly
-                    />
-                </div>
+            <div className="h-auto min-h-screen flex items-center justify-center bg-[#FFFFFF] p-4">
+                <div className="w-full max-w-xl bg-[#FFFFFF] rounded-2xl shadow-lg p-8">
+                    <h2 className="text-2xl font-bold text-center text-bg-black mb-6">
+                        {id !== undefined ? "Atualizar" : "Cadastrar"} Oportunidade
+                    </h2>
+                    <form className="space-y-4" onSubmit={gerarNovaOportunidade}>
+                        <div>
+                            <label className="text-sm text-[#9197B3]"
+                            >
+                                Nome:
+                            </label>
+                            <input 
+                            type="text" 
+                            name="nome" 
+                            value={oportunidade.nome} 
+                            onChange={atualizarEstado} 
+                            required className="w-full text-[#B2BADF] bg-[#F0F3FF] border border-[#F0F3FF] rounded-full p-2" 
+                            />
+                        </div>
+                        <div>
+                            <label className="text-sm text-[#9197B3]"
+                            >
+                                Valor:
+                                </label>
+                            <input 
+                            type="text" 
+                            name="valor" 
+                            value={oportunidade.valor} 
+                            onChange={atualizarEstado} 
+                            required className="w-full text-[#B2BADF] bg-[#F0F3FF] border border-[#F0F3FF] rounded-full p-2" 
+                            />
+                        </div>
+                        <div>
+                            <label className="text-sm text-[#9197B3]"
+                            >
+                                Data de fechamento:
+                            </label>
+                            <input 
+                            type="date" 
+                            name="termino" 
+                            value={oportunidade.termino || ""} 
+                            onChange={atualizarEstado} 
+                            required className="w-full text-[#B2BADF] bg-[#F0F3FF] border border-[#F0F3FF] rounded-full p-2" 
+                            />
+                        </div>
+                        <div>
+                            <label className="text-sm text-[#9197B3]"
+                            >
+                                Status:
+                            </label>
+                            <select 
+                                name="status" 
+                                value={oportunidade.status} 
+                                onChange={atualizarEstado} 
+                                required className="w-full text-[#B2BADF] bg-[#F0F3FF] border border-[#F0F3FF] rounded-full p-2">
+                                
+                                    <option value="" disabled>
+                                        Selecione o Status da Oportunidade
+                                    </option>
 
-                <div>
-                    <label>Data de fechamento</label>
-                    <input
-                        type="date"
-                        className=""
-                        placeholder="Término"
-                        name="termino"
-                        value={oportunidade.termino || ""}
-                        onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                            atualizarEstado(e)
-                        }
-                        required
-                    />
-                </div>
-                <div>
-                    <label>Status</label>
-                    <select
-                        name="status"
-                        id="status"
-                        className=""
-                        onChange={(e) => atualizarEstado(e)}
-                        value={oportunidade.status}
-                        required
-                    >
-                        <option value="" disabled>
-                            Selecione o Status da Oportunidade
-                        </option>
-
-                        {statusOptions.map((status) => (
-                            <option key={status} value={status}>
-                                {status}
-                            </option>
-                        ))}
-                    </select>
-                </div>
-                <div>
-                    <label>Cliente da Oportunidade</label>
-                    <select
-                        name="cliente"
-                        id="cliente"
-                        className=""
-                        onChange={(e) =>
-                            buscarClientePorId(e.currentTarget.value)
+                                        {statusOptions.map((status) => (
+                                        <option key={status} value={status}>
+                                            {status}
+                                        </option>
+                                    ))}
+                            </select>
+                        </div>
+                        <div>
+                        <label className="text-sm text-[#9197B3]">Cliente:</label>
+                        <select
+                            name="cliente"
+                            id="cliente"
+                            className="w-full text-[#B2BADF] bg-[#F0F3FF] border border-[#F0F3FF] rounded-full p-2"
+                            onChange={(e) =>
+                                buscarClientePorId(e.currentTarget.value)
                         }
                         value={
                             oportunidade.id === undefined
                                 ? ""
                                 : oportunidade.cliente?.id
                         }
-                    >
-                        <option value="" disabled>
-                            Selecione um Cliente
-                        </option>
-                        {clientes.map((cliente) => {
-                            <>
-                                <option value={cliente.id}>
-                                    {cliente.nome}
+                        >
+                                <option value="" disabled>
+                                    Selecione um Cliente
                                 </option>
-                            </>;
-                        })}
-                    </select>
+                                {clientes.map((cliente) => {
+                                    <>
+                                    <option value={cliente.id}>
+                                        {cliente.nome}
+                                    </option>
+                                </>;
+                            })}
+                            </select>
+                        </div>
+
+                        <div className="grid grid-cols-2 gap-4 pt-4">
+                            <button 
+                                type="button" 
+                                onClick={retornar} 
+                                className="w-full bg-[#9B85FA] hover:bg-[#5932EA] text-[#FFFFFF] rounded-full py-2"
+                                >
+                                    Cancelar
+                                </button>
+                            <button 
+                                type="submit" 
+                                className="w-full bg-[#C9FFB6] hover:bg-[#45FCAD] text-[#323232] rounded-full py-2"
+                                >
+                                <span>{id !== undefined ? "Atualizar" : "Cadastrar"}</span>
+                            </button>
+                        </div>
+                    </form>
                 </div>
-                <button
-                    type="submit"
-                    className="" /* disabled={carregandoCliente} */
-                >
-                    <span>{id !== undefined ? "Atualizar" : "Cadastrar"}</span>
-                </button>
-            </form>
+            </div>
         </Modal>
     );
 }
-
 export default FormOportunidade;
