@@ -8,7 +8,7 @@ function Navbar() {
 
     return (
         <>
-            <div className="w-full flex justify-center items-center h-20 bg-[#080036]">
+            <div className="w-full flex justify-center items-center h-20 bg-[#080036] fixed top-0 left-0  z-50">
                 <div className="container flex justify-between items-center p-4">
 
                     <Link to="/home">
@@ -17,7 +17,7 @@ function Navbar() {
 
                     <button 
                         onClick={() => setMenuAberto(!menuAberto)} 
-                        className="md:hidden text-[#AEB5D6] focus:outline-none"
+                        className="md:hidden text-[#AEB5D6] focus:outline-none" 
                         aria-label="Abrir menu"
                     >
                         {menuAberto ? <X size={28} /> : <List size={28} />}
@@ -50,7 +50,7 @@ function Navbar() {
                             <h2>Oportunidades</h2>
                         </Link>
                         <Link
-                            to=""
+                            to="/sobre"
                             className="flex justify-center items-center gap-1 text-sm font-medium text-[#AEB5D6] p-2 transition duration-300 hover:bg-[#5932EA] hover:text-white rounded-lg"
                         >
                             <img src="https://ik.imagekit.io/q5tv5x3k8/CRM/sobre.svg?updatedAt=1740682060198" alt="Home" />
