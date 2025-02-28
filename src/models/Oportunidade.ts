@@ -1,12 +1,17 @@
-import Cliente from "./Cliente";
+import Cliente from "./Cliente.ts";
 
+export enum StatusOportunidade {
+    ABERTA = "Aberta",
+    PERDIDA = "Perdida",
+    FECHADA = "Fechada",
+}
 export default interface Oportunidade {
-    id: number;
+    id?: number;
     nome: string;
-    valor: number;
+    valor: string;
     abertura: string;
-    data_atualizacao: string;
+    data_atualizacao?: string;
     termino: string;
-    status: string;
-    cliente: Cliente;
+    status: StatusOportunidade;
+    cliente?: Cliente | null;
 }
