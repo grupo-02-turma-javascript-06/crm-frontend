@@ -32,7 +32,7 @@ function ListarCliente() {
                 <InfinitySpin width="200" arial-label="infinity-spin-loading" />
             )}
 
-            <div className="flex flex-col items-center justify-center w-full md:px-8  min-h-screen pt-8 bg-[#F0F3FF]">
+            <div className="flex flex-col items-center justify-center md:px-8  pt-8 bg-[#F0F3FF] m-25">
                 <div className="container flex flex-col md:flex-row justify-between items-center text-center w-full gap-2">
                     <div className="">
                         <h2 className="text-3xl font-bold text-gray-900">
@@ -66,7 +66,7 @@ function ListarCliente() {
                             <button className="bg-[#5932EA]  text-white px-4 py-2 rounded-lg flex justify-center text-center items-center gap-2 hover:bg-[#4A24D9] duration-300 shadow-md">
                                 <Link to={"/cliente/store"} className="flex gap-1 text-center items-center">
                                     <Plus size={20} />
-                                    <p className="hidden md:flex">Cadastrar Cliente</p>                                   
+                                    <p className="hidden md:flex">Cadastrar Cliente</p>
                                 </Link>
                             </button>
                         </div>

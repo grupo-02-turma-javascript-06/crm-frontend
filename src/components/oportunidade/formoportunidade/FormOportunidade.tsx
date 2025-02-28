@@ -17,7 +17,7 @@ function FormOportunidade() {
         abertura: new Date().toISOString().split("T")[0],
         termino: "",
         status: StatusOportunidade.ABERTA,
-        cliente: undefined,
+        cliente: {} as Cliente,
     });
 
     const statusOptions = Object.values(StatusOportunidade);
@@ -38,7 +38,7 @@ function FormOportunidade() {
     useEffect(() => {
         setOportunidade({
             ...oportunidade,
-            cliente: cliente
+            cliente: cliente || {} as Cliente
         });
     }, [cliente]);
 
