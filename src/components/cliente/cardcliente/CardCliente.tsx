@@ -13,7 +13,7 @@ function CardCliente({ cliente }: CardClienteProps) {
                 <div className="bg-white rounded-2xl shadow-lg min-h-88 min-w-74 text-center relative flex flex-col justify-center items-center">
                     <div className="absolute top-[-25%] left-[21%]">
                         <img
-                            src={cliente.foto}
+                            src={cliente.foto ? cliente.foto : "https://ik.imagekit.io/q5tv5x3k8/Design%20sem%20nome.svg?updatedAt=1740748816473"} 
                             alt="Foto Perfil"
                             className="w-43 h-43 rounded-full bg-[#f0f3ff] border-5 border-[#f0f3ff]"
                         />

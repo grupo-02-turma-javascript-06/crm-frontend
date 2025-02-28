@@ -64,7 +64,7 @@ function CardClienteAberto() {
 
                     <div className="flex w-full justify-between mt-10 top-100">
                         <div className="flex gap-3">
-                            <Link to={"/deletarcliente"}>
+                            <Link to={`/deletarcliente/${cliente.id}`}>
                                 <button className="text-gray-500 hover:text-red-500">
                                     <Trash size={40} weight="light" />
                                 </button>

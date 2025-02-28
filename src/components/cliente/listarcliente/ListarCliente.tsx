@@ -32,14 +32,14 @@ function ListarCliente() {
                 <InfinitySpin width="200" arial-label="infinity-spin-loading" />
             )}
 
-            <div className="  w-full md:px-8  min-h-screen pt-8 bg-[#F0F3FF]">
+            <div className="flex flex-col items-center justify-center w-full md:px-8  min-h-screen pt-8 bg-[#F0F3FF]">
                 <div className="container flex flex-col md:flex-row justify-between items-center text-center w-full gap-2">
-                    <div>
+                    <div className="w-30vw">
                         <h2 className=" text-3xl font-bold text-gray-900">
                             Todos os Clientes
                         </h2>
                     </div>
-                    <div className="flex items-center text-center justify-center gap-1 flex-row md:gap-3 md:justify-end">
+                    <div className="flex w-70vw items-center text-center justify-between gap-1 flex-row md:gap-3 md:justify-end">
                         <div className="flex md:w-1/3 gap-2 relative">
                             <input
                                 type="text"
@@ -52,8 +52,11 @@ function ListarCliente() {
                                 className="absolute text-neutral-400 top-1 left-1"
                             />
                         </div>
-                        <div>
-                            <select className="hidden md:block p-2 border-none bg-white rounded-lg shadow-sm focus:outline-none focus:ring-1 focus:ring-gray-300">
+                        <div className="p-2 flex justify-center items-center gap-1 bg-white rounded-lg shadow-sm focus:outline-none focus:ring-1 focus:ring-gray-300">
+                            <div>
+                                <p>Ordernar por: </p>
+                            </div>
+                            <select className="hidden md:block  border-none ">
                                 <option>A - Z</option>
                                 <option>Z - A</option>
                             </select>

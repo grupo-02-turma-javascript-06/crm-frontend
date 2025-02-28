@@ -7,7 +7,7 @@ import Modal from "../../modal/Modal";
 
 function DeletarCliente() {
     const navigate = useNavigate();
-    navigate("/cardclienteaberto");
+    // navigate(`/cardclienteaberto/${id}`);
 
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [cliente, setCliente] = useState<Cliente>({} as Cliente);
@@ -28,7 +28,7 @@ function DeletarCliente() {
         }
     }, [id]);
 
-    async function DeletarCliente() {
+    async function deletarCliente() {
         setIsLoading(true);
 
         try {
@@ -46,6 +46,7 @@ function DeletarCliente() {
     const [isOpen, setIsOpen] = useState<boolean>(true);
 
     function retornar() {
+        navigate(`/cardclienteaberto/${cliente.id}`)
         setIsOpen(false);
     }
 
@@ -69,7 +70,7 @@ function DeletarCliente() {
                         </button>
                         <button
                             className="w-30  rounded-xl bg-[#C9FFB6] text-[#323232] hover:bg-[#45FCAD]"
-                            onClick={DeletarCliente}
+                            onClick={deletarCliente}
                         >
                             {isLoading ? (
                                 <RotatingLines
