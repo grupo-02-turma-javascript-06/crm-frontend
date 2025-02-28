@@ -13,5 +13,5 @@ export default interface Oportunidade {
     data_atualizacao?: string;
     termino: string;
     status: StatusOportunidade;
-    cliente?: Cliente | null;
+    cliente: Cliente;
 }
