@@ -1,31 +1,13 @@
 import { PencilSimple, Trash } from '@phosphor-icons/react';
-import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import Oportunidade, { StatusOportunidade } from '../../../models/Oportunidade';
-import { atualizar } from '../../../services/Service';
+import Oportunidade from '../../../models/Oportunidade';
+
 
 interface CardOportunidadeProps {
     oportunidade: Oportunidade;
-    onUpdateStatus: (id: number, status: StatusOportunidade) => void; // Callback para atualizar status no pai
 }
 
-function CardOportunidade({ oportunidade, onUpdateStatus }: CardOportunidadeProps) {
-    const [status, setStatus] = useState<StatusOportunidade>(oportunidade.status);
-
-    const handleStatusChange = async (event: React.ChangeEvent<HTMLSelectElement>) => {
-        const newStatus = event.target.value as StatusOportunidade;
-
-        if (oportunidade.id) {
-            try {
-                await atualizar(`/oportunidades/${oportunidade.id}`, { status: newStatus }, () => { });
-                setStatus(newStatus);
-                onUpdateStatus(oportunidade.id, newStatus);
-                console.log(`Status atualizado para: ${newStatus}`);
-            } catch (error) {
-                console.error("Erro ao atualizar status:", error);
-            }
-        }
-    };
+function CardOportunidade({ oportunidade }: CardOportunidadeProps) {
 
     return (
         <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
@@ -37,29 +19,29 @@ function CardOportunidade({ oportunidade, onUpdateStatus }: CardOportunidadeProp
             <td className="px-6 py-4">{oportunidade.termino}</td>
             <td className="px-6 py-4">{oportunidade.valor}</td>
             <td className="px-0 py-4">
-                <div className='w-[120px] h-[32px] rounded-[4px] flex justify-center items-center'>
+                {/*             <div className='w-[120px] h-[32px] rounded-[4px] flex justify-center items-center'>
                     <select
                         name="status"
                         id="status"
                         className='border p-2 border-slate-800 rounded w-full'
-                        value={status}
-                        onChange={handleStatusChange}
+                        value={oportunidade.status}
                     >
-                        {Object.values(StatusOportunidade).map((statusOption) => (
-                            <option key={statusOption} value={statusOption}>
-                                {statusOption}
-                            </option>
-                        ))}
                     </select>
-                </div>
+                </div> */}
             </td>
             <td className="px-0 py-4 flex justify-center items-center">
-                <button onClick={() => console.log(`Excluir oportunidade ${oportunidade.id}`)} className="mr-2">
-                    <Trash size={25} />
-                </button>
-                <Link to={`/editaroportunidade/${oportunidade.id}`}>
-                    <PencilSimple size={25} />
+                <Link to={`/deletaroportunidade/${oportunidade.id}`}>
+                    <button className="text-gray-500 hover:text-red-500">
+                        <Trash size={40} weight="light" />
+                    </button>
                 </Link>
+
+                <Link to={`/oportunidade/update/${oportunidade.id}`}>
+                    <button className="text-gray-500 hover:text-[#5932EA]">
+                        <PencilSimple size={40} weight="light" />
+                    </button>
+                </Link>
+
             </td>
         </tr>
     );

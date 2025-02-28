@@ -7,15 +7,18 @@ import Oportunidade from "../../../models/Oportunidade";
 
 function DeletarOportunidade() {
     const navigate = useNavigate();
-    const { id } = useParams();
+    const { id } = useParams<{ id: string }>()
 
     const [isLoading, setIsLoading] = useState(false);
-    const [oportunidade, setOportunidade] = useState<Oportunidade | null>(null);
+    const [oportunidade, setOportunidade] = useState<Oportunidade>({} as Oportunidade);
     const [isOpen, setIsOpen] = useState(true);
+
+
+
 
     async function buscarPorId(id: string) {
         try {
-            await buscar(`/oportunidade/${id}`, setOportunidade);
+            await buscar(`/oportunidades/${id}`, setOportunidade);
         } catch (error) {
             alert("Oportunidade não encontrada!");
             retornar();
@@ -31,7 +34,7 @@ function DeletarOportunidade() {
 
         setIsLoading(true);
         try {
-            await deletar(`/oportunidade/${id}`);
+            await deletar(`/oportunidades/${id}`);
             alert("Oportunidade apagada com sucesso!");
         } catch (error) {
             alert("Erro ao apagar a oportunidade!");
@@ -42,7 +45,7 @@ function DeletarOportunidade() {
 
     function retornar() {
         setIsOpen(false);
-        navigate("/");
+        navigate("/oportunidade");
     }
 
     return (

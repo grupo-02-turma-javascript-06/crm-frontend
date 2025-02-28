@@ -1,9 +1,10 @@
-import { Link, MagnifyingGlass, Plus } from '@phosphor-icons/react';
+import { MagnifyingGlass, Plus } from '@phosphor-icons/react';
 import CardOportunidade from '../cardoportunidade/CardOportunidade';
 import { useEffect, useState } from 'react';
 import Oportunidade from '../../../models/Oportunidade';
 import { buscar } from '../../../services/Service';
 import { InfinitySpin } from 'react-loader-spinner';
+import { Link } from 'react-router-dom';
 
 function ListaOportunidade() {
 
@@ -12,13 +13,13 @@ function ListaOportunidade() {
 
     useEffect(() => {
         buscarOportunidade();
-    }, []);
+    }, [oportunidades.length]);
 
     async function buscarOportunidade() {
         setIsLoading(true);
 
         try {
-            await buscar("/oportunidade", setOportunidades);
+            await buscar("/oportunidades", setOportunidades);
         } catch (error) {
             console.error("Erro ao buscar oportunidades:", error);
         } finally {
@@ -26,9 +27,12 @@ function ListaOportunidade() {
         }
     }
 
-    function handleUpdateStatus(id: number, status: string) {
-        // Lógica para atualizar o status da oportunidade
-    }
+    const [query, setQuery] = useState("");
+
+    const filterOportunidade = oportunidades.filter((oportunidade) =>
+        oportunidade.nome.toLowerCase().includes(query.toLowerCase())
+    );
+
 
     return (
         <>
@@ -37,36 +41,43 @@ function ListaOportunidade() {
             )}
 
             {!isLoading && (
-                <div className='m-15'>
+                <div className='m-25'>
                     <div className='flex justify-between'>
                         <button className="bg-[#4D4AEA] text-white px-4 py-2 rounded-lg flex items-center gap-2 ml-auto">
-                            <Link to={'/oportunidade/items'}><Plus size={20} />Criar Oportunidade</Link>
+                            <Link to={'/oportunidades/store'} className='flex'><Plus size={20} />Criar Oportunidade</Link>
                         </button>
                     </div>
 
-                    <div className='w-full'>
-                        <div className="flex flex-col items-center p-4 bg-gray-100 h-screen w-full">
+                    <div className=''>
+                        <div className="flex flex-col items-center p-4 bg-gray-100">
                             {/* Cabeçalho */}
                             <div className="w-full max-w-5xl bg-white shadow-md rounded-xl p-6 mb-4">
                                 <div className="flex justify-between items-center mb-4">
                                     <h2 className="text-2xl font-semibold">Todas as Oportunidades</h2>
 
                                     <div className="flex items-center gap-4">
-                                        <div className="relative">
-                                            <MagnifyingGlass size={20} className="absolute left-3 top-2 text-gray-400" />
-                                            <input
-                                                type="text"
-                                                placeholder="Pesquisar..."
-                                                className="pl-10 pr-4 py-2 border rounded-lg w-full"
-                                            />
-                                        </div>
+                                        <form className="flex justify-center items-center max-w-sm mx-auto w-full">
+                                            <label htmlFor="search" className="sr-only">
+                                                Search
+                                            </label>
+                                            <div className="relative w-[60vw]">
+                                                <input
+                                                    type="text"
+                                                    id="simple-search"
+                                                    className="bg-[#D9D9D9] border border-gray-300 text-gray-900 text-sm rounded-bl-lg rounded-tr-lg w-full p-2.5"
+                                                    placeholder="Pesquisar Nome"
+                                                    value={query}
+                                                    onChange={(e) => setQuery(e.target.value)}
+                                                />
+                                            </div>
+                                        </form>
 
-                                        <div className=" text-[14px] font-poppins">
+                                        {/*                                         <div className=" text-[14px] font-poppins">
                                             <span>Ordenar por:</span>
                                             <select name="status" id="status" className="font-normal">
                                                 <option value="" selected disabled>STATUS</option>
                                             </select>
-                                        </div>
+                                        </div> */}
 
                                     </div>
                                 </div>
@@ -91,7 +102,6 @@ function ListaOportunidade() {
                                             <CardOportunidade
                                                 key={oportunidade.id}
                                                 oportunidade={oportunidade}
-                                                onUpdateStatus={handleUpdateStatus}
                                             />
                                         ))}
                                     </tbody>

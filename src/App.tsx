@@ -9,6 +9,9 @@ import Footer from "./components/footer/Footer";
 import Sobre from "./pages/sobre/Sobre";
 import Home from "./pages/home/Home";
 import InicioDashboard from "./pages/dashboard/iniciodashboard/InicioDashboard";
+import ListaOportunidade from "./components/oportunidade/listaoportunidade/ListaOportunidade";
+import FormOportunidade from "./components/oportunidade/formoportunidade/FormOportunidade";
+import DeletarOportunidade from "./components/oportunidade/deletaroportunidade/DeletarOportunidade";
 
 function App() {
     return (
@@ -40,6 +43,19 @@ function App() {
                         <Route
                             path="/deletarcliente/:id"
                             element={<DeletarCliente />}
+                        />
+                        <Route path="/oportunidade" element={<ListaOportunidade />} />
+                        <Route
+                            path="/deletaroportunidade/:id"
+                            element={<DeletarOportunidade />}
+                        />
+                        <Route
+                            path="/oportunidade/update/:id"
+                            element={<FormOportunidade />}
+                        />
+                        <Route
+                            path="/oportunidades/store"
+                            element={<FormOportunidade />}
                         />
                     </Routes>
                 </div>
