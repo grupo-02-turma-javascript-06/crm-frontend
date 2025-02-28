@@ -11,7 +11,7 @@ function CardOportunidade({ oportunidade }: CardOportunidadeProps) {
 
     return (
         <tr className="bg-white border-b text-black  border-gray-200">
-            <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+            <th scope="row" className="px-6 py-4 font-medium text-black whitespace-nowrap">
                 {oportunidade.nome}
             </th>
             <td className="px-6 py-4">{oportunidade.abertura}</td>
@@ -31,13 +31,13 @@ function CardOportunidade({ oportunidade }: CardOportunidadeProps) {
             </td>
             <td className="px-0 py-4 flex justify-center items-center">
                 <Link to={`/deletaroportunidade/${oportunidade.id}`}>
-                    <button className="text-gray-500 hover:text-red-500">
+                    <button className="text-black hover:text-red-500">
                         <Trash size={40} weight="light" />
                     </button>
                 </Link>
 
                 <Link to={`/oportunidade/update/${oportunidade.id}`}>
-                    <button className="text-gray-500 hover:text-[#5932EA]">
+                    <button className="text-black hover:text-[#5932EA]">
                         <PencilSimple size={40} weight="light" />
                     </button>
                 </Link>
