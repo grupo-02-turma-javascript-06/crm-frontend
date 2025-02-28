@@ -69,10 +69,12 @@ function CardClienteAberto() {
                                     <Trash size={40} weight="light" />
                                 </button>
                             </Link>
-                            <Link to={`/cliente/store/${cliente.id}`}>
-                            <button className="text-gray-500 hover:text-[#5932EA]">
-                                <PencilSimple size={40} weight="light" />
-                            </button>
+
+
+                            <Link to={`/cliente/update/${cliente.id}`}>
+                                <button className="text-gray-500 hover:text-[#5932EA]">
+                                    <PencilSimple size={40} weight="light" />
+                                </button>
                             </Link>
                         </div>
 
