@@ -21,7 +21,7 @@ function CardClienteAberto() {
 
     function retornar() {
         setIsOpen(false);
-        navigate("/cardcliente");
+        navigate("/cliente");
     }
 
     useEffect(() => {
