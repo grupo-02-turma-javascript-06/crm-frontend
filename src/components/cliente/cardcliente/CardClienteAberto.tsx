@@ -1,22 +1,34 @@
 import { PencilSimple, Trash, WhatsappLogo } from "@phosphor-icons/react";
-import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
 import Cliente from "../../../models/Cliente";
 import Modal from "../../modal/Modal";
+import { buscar } from "../../../services/Service";
 
-interface CardClienteAbertoProps {
-    cliente: Cliente;
-}
-
-function CardClienteAberto({ cliente }: CardClienteAbertoProps) {
+function CardClienteAberto() {
     const navigate = useNavigate();
 
     const [isOpen, setIsOpen] = useState<boolean>(true);
+    const [cliente, setCliente] = useState<Cliente>({} as Cliente);
+
+    const { id } = useParams<{ id: string }>();
+
+    async function buscarPorId(id: string) {
+        try {
+            await buscar(`/cliente/${id}`, setCliente);
+        } catch (error: any) {}
+    }
 
     function retornar() {
         setIsOpen(false);
         navigate("/cardcliente");
     }
+
+    useEffect(() => {
+        if (id !== undefined) {
+            buscarPorId(id);
+        }
+    });
 
     return (
         <Modal isOpen={isOpen} onClose={retornar}>
@@ -25,7 +37,7 @@ function CardClienteAberto({ cliente }: CardClienteAbertoProps) {
                     <div className="grid grid-cols-1 md:grid-cols-2 w-full items-center md:mt-10">
                         <div className="w-60 h-60 rounded-full overflow-hidden">
                             <img
-                                src="https://ik.imagekit.io/madsik/REACT/PERFIL/perfil-catarina.svg?updatedAt=1739678162067" /* {cliente.foto} */
+                                src={cliente.foto}
                                 alt="Foto Cliente"
                                 className="w-full h-full object-cover"
                             />
