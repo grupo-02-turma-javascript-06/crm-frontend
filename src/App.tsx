@@ -16,7 +16,7 @@ function App() {
                             element={<FormCliente />}
                         />
                         <Route
-                            path="/cliente/store/:id"
+                            path="/cliente/update/:id"
                             element={<FormCliente />}
                         />
                         <Route path="/cardclienteaberto/:id" element={<CardClienteAberto />} />

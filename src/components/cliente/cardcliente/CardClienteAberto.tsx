@@ -70,9 +70,12 @@ function CardClienteAberto() {
                                 </button>
                             </Link>
 
-                            <button className="text-gray-500 hover:text-[#5932EA]">
-                                <PencilSimple size={40} weight="light" />
-                            </button>
+
+                            <Link to={`/cliente/update/${cliente.id}`}>
+                                <button className="text-gray-500 hover:text-[#5932EA]">
+                                    <PencilSimple size={40} weight="light" />
+                                </button>
+                            </Link>
                         </div>
 
                         <div className="flex gap-3">
