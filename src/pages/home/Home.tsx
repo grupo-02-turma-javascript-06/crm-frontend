@@ -8,7 +8,7 @@ function Home() {
                     <div className="flex flex-col items-center text-center md:text-left gap-4">
                         <h1 className="text-4xl md:text-5xl font-bold text-[#080036] text-center">Seja bem vinde a 2Connect!</h1>
                         <p className="text-lg md:text-xl text-center text-[#A1A1A1]">Não geramos apenas leads, geramos conecções reais</p>
-                        <Link to={""} className="rounded py-2 px-8 text-white bg-[#5932EA] hover:bg-[#080036] hover:text-[#AEB5D6]">Dashboard</Link>
+                        <Link to={"/dashboard"} className="rounded py-2 px-8 text-white bg-[#5932EA] hover:bg-[#080036] hover:text-[#AEB5D6]">Dashboard</Link>
                     </div>
                     <div className="flex justify-center">
                         <img
