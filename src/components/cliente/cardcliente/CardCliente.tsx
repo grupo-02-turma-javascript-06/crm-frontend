@@ -1,13 +1,12 @@
-import { Plus } from '@phosphor-icons/react'
-import { Link } from 'react-router-dom'
-import Cliente from '../../../models/Cliente';
+import { Plus } from "@phosphor-icons/react";
+import { Link } from "react-router-dom";
+import Cliente from "../../../models/Cliente";
 
 interface CardClienteProps {
-    cliente: Cliente
+    cliente: Cliente;
 }
 
 function CardCliente({ cliente }: CardClienteProps) {
-
     return (
         <>
             <div className="flex justify-center mx-5 items-center pt-30">
@@ -21,26 +20,32 @@ function CardCliente({ cliente }: CardClienteProps) {
                     </div>
                     <div className="flex flex-col justify-center pt-12 items-center text-center gap-3">
                         <div className="text-lg">
-                            <h2 className="pb-1 font-bold text-gray-800">fdshgykjujgydfs{cliente.nome}</h2>
-                            <p className="text-gray-600">greag{cliente.email}</p>
-                            <p className="text-gray-600">gaergaerthr{cliente.telefone}</p>
+                            <h2 className="pb-1 font-bold text-gray-800">
+                                fdshgykjujgydfs{cliente.nome}
+                            </h2>
+                            <p className="text-gray-600">
+                                greag{cliente.email}
+                            </p>
+                            <p className="text-gray-600">
+                                gaergaerthr{cliente.telefone}
+                            </p>
                         </div>
                     </div>
                     <div>
-
-                        <div className='bg-[#9B85FA] text-white mt-8 px-4 py-2 rounded-lg flex items-center gap-2 hover:bg-[#5932EA] duration-500'>
-                            <Link to={"/cardclienteaberto"} className='flex items-center gap-2'>
+                        <div className="bg-[#9B85FA] text-white mt-8 px-4 py-2 rounded-lg flex items-center gap-2 hover:bg-[#5932EA] duration-500">
+                            <Link
+                                to={"/cardclienteaberto"}
+                                className="flex items-center gap-2"
+                            >
                                 <Plus size={20} />
                                 <p>Ver Mais</p>
                             </Link>
                         </div>
-
                     </div>
-
                 </div>
             </div>
         </>
-    )
+    );
 }
 
-export default CardCliente
+export default CardCliente;
