@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-    baseURL: import.meta.env.VITE_API_URL,
+    baseURL: "https://crm-backend-rc22.onrender.com",
 });
 
 export const buscar = async (url: string, setDados: Function) => {
